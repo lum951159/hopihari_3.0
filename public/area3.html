@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +52,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo img {
             height: 50px;
             margin-left: 20px;
@@ -136,12 +137,15 @@
         }
 
         .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 15px;
-            font-size: 0.9rem;
-            margin-top: 30px;
+            padding: 10px 0;
+            font-size: 14px;
         }
 
         .last-update {
@@ -161,22 +165,22 @@
             display: flex;
             align-items: center;
         }
-        
+
         .user-info {
             margin-right: 20px;
             text-align: right;
         }
-        
+
         .user-name {
             font-weight: bold;
             font-size: 16px;
         }
-        
+
         .user-email {
             font-size: 14px;
             opacity: 0.9;
         }
-        
+
         .logout-btn {
             padding: 8px 15px;
             background-color: rgba(255, 255, 255, 0.2);
@@ -186,14 +190,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .logout-btn:hover {
             background-color: white;
             color: #FF6B00;
         }
-
     </style>
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -207,16 +211,16 @@
                         <div class="user-email" id="user-email"></div>
                     </div>
                     <form action="dashboard.html">
-                        <button class="logout-btn" >Voltar</button>
+                        <button class="logout-btn">Voltar</button>
                     </form>
-                    
+
 
                 </div>
             </div>
         </div>
     </header>
-    
-   
+
+
 
     <div class="container">
         <div class="rides-grid">
@@ -274,74 +278,65 @@
                 </div>
             </div>
 
-            <div class="ride-card">
-                <div class="ride-image" style="background-image: url('img-area3/interativo.jpg')"></div>
-                <div class="ride-info">
-                    <h3 class="ride-name">Jogos e Atraçoes interativas</h3>
-                    <div class="ride-time">0 min</div>
-                    <span class="ride-status status-maintenance">Em Manutenção</span>
+            
+
+                <div class="footer">
+                    &copy; 2025 Parque HOPIhARI - Sistema de Gerenciamento de Filas
                 </div>
-            </div>
 
-        <p class="last-update">Última atualização: 25/04/2025 15:42</p>
-    </div>
+                <script>
+                    // Código para atualização em tempo real
+                    function atualizarTemposEspera() {
+                        // Em uma implementação real, aqui faria uma chamada AJAX para o servidor
+                        // para obter os dados atualizados das filas
 
-    <div class="footer">
-        &copy; 2025 Parque HOPIhARI - Sistema de Gerenciamento de Filas
-    </div>
-
-    <script>
-        // Código para atualização em tempo real
-        function atualizarTemposEspera() {
-            // Em uma implementação real, aqui faria uma chamada AJAX para o servidor
-            // para obter os dados atualizados das filas
-            
-            // Simulação de atualização para demonstração
-            const agora = new Date();
-            document.querySelector('.last-update').textContent = 
-                `Última atualização: ${agora.toLocaleDateString()} ${agora.toLocaleTimeString()}`;
-        }
-
-        // Atualizar a cada 30 segundos
-        setInterval(atualizarTemposEspera, 30000);
-    </script>
-    
-    
-
-    <script>
-        // Verificar se há um usuário logado
-        document.addEventListener('DOMContentLoaded', function() {
-            const userData = JSON.parse(localStorage.getItem('user')) || {};
-            
-            if (userData.firstName) {
-                document.getElementById('user-name').textContent = `Olá, ${userData.firstName}!`;
-                document.getElementById('user-email').textContent = userData.email;
-            } else {
-                // Redirecionar para a página de login se não houver usuário
-                window.location.href = '/';
-            }
-            
-            // Botão de logout
-            document.getElementById('logout-btn').addEventListener('click', function() {
-                localStorage.removeItem('user');
-                window.location.href = '/';
-            });
-            
-            // Toggle do menu lateral (para mobile)
-            document.getElementById('menu-toggle').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.toggle('active');
-            });
-            
-            // Fechar menu ao clicar em um item (para mobile)
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 992) {
-                        document.getElementById('sidebar').classList.remove('active');
+                        // Simulação de atualização para demonstração
+                        const agora = new Date();
+                        document.querySelector('.last-update').textContent =
+                            `Última atualização: ${agora.toLocaleDateString()} ${agora.toLocaleTimeString()}`;
                     }
-                });
-            });
-        });
-    </script>
+
+                    // Atualizar a cada 30 segundos
+                    setInterval(atualizarTemposEspera, 30000);
+                </script>
+
+
+
+                <script>
+                    // Verificar se há um usuário logado
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const userData = JSON.parse(localStorage.getItem('user')) || {};
+
+                        if (userData.firstName) {
+                            document.getElementById('user-name').textContent = `Olá, ${userData.firstName}!`;
+                            document.getElementById('user-email').textContent = userData.email;
+                        } else {
+                            // Redirecionar para a página de login se não houver usuário
+                            window.location.href = '/';
+                        }
+
+                        // Botão de logout
+                        document.getElementById('logout-btn').addEventListener('click', function () {
+                            localStorage.removeItem('user');
+                            window.location.href = '/';
+                        });
+
+                        // Toggle do menu lateral (para mobile)
+                        document.getElementById('menu-toggle').addEventListener('click', function () {
+                            document.getElementById('sidebar').classList.toggle('active');
+                        });
+
+                        // Fechar menu ao clicar em um item (para mobile)
+                        const navLinks = document.querySelectorAll('.nav-link');
+                        navLinks.forEach(link => {
+                            link.addEventListener('click', function () {
+                                if (window.innerWidth <= 992) {
+                                    document.getElementById('sidebar').classList.remove('active');
+                                }
+                            });
+                        });
+                    });
+                </script>
 </body>
+
 </html>
